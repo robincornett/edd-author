@@ -1,5 +1,17 @@
 <?php
 
+add_action( 'genesis_entry_content', 'edd_publications_image', 5 );
+function edd_publications_image() {
+	if ( ! has_post_thumbnail() ) {
+		return;
+	}
+
+	$attributes = array(
+		'class' => 'aligncenter',
+	);
+	$image = get_the_post_thumbnail( get_the_ID(), 'publication', $attributes );
+	echo $image;
+}
 
 add_action( 'genesis_entry_content', 'edd_publications_links', 50 );
 function edd_publications_links() {

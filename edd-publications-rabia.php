@@ -29,6 +29,14 @@ if ( ! defined( 'WPINC' ) ) {
 
 require plugin_dir_path( __FILE__ ) . '/includes/edd-publications-customfields.php';
 
+add_action( 'init', 'edd_publications_settings' );
+function edd_publications_settings() {
+
+	add_image_size( 'publication', 400, 600, true );
+
+	add_post_type_support( 'download', 'genesis-cpt-archive-settings' );
+}
+
 add_filter( 'edd_download_post_type_args', 'edd_publications_post_type_args', 10, 2 );
 function edd_publications_post_type_args( $download_args ) {
 
