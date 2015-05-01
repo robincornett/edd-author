@@ -4,7 +4,7 @@ if ( function_exists( 'register_field_group' ) ) {
 
 	register_field_group( array(
 		'key'    => 'group_5543827f1c6ac',
-		'title'  => 'Publications Links',
+		'title'  => 'Publication Links',
 		'fields' => array(
 			array(
 				'key'               => 'field_554382904bbda',

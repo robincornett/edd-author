@@ -29,6 +29,15 @@ if ( ! defined( 'WPINC' ) ) {
 
 require plugin_dir_path( __FILE__ ) . '/includes/edd-publications-customfields.php';
 
+add_action( 'init', 'edd_publications_settings' );
+function edd_publications_settings() {
+
+	add_image_size( 'publication', 400, 600, true );
+	add_image_size( 'publication_checkout', 40, 60, true );
+	add_post_type_support( 'download', 'genesis-cpt-archives-settings' );
+
+}
+
 add_filter( 'edd_download_post_type_args', 'edd_publications_post_type_args', 10, 2 );
 function edd_publications_post_type_args( $download_args ) {
 
@@ -78,3 +87,19 @@ function edd_publications_add_body_class( $classes ) {
 
 	return $classes;
 }
+
+add_filter( 'edd_download_category_labels', 'edd_publicatios_category_labels', 10, 2 );
+function edd_publicatios_category_labels( $category_labels ) {
+	$category_labels['name'] = 'Types';
+	$category_labels['singular_name'] = 'Type';
+
+	return $category_labels;
+}
+
+add_filter( 'edd_checkout_image_size', 'edd_publications_checkout_image_size', 10, 2 );
+function edd_publications_checkout_image_size( $size ) {
+	$size = 'publication_checkout';
+
+	return $size;
+}
+
