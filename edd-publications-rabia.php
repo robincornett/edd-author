@@ -88,10 +88,36 @@ function edd_publications_add_body_class( $classes ) {
 	return $classes;
 }
 
-add_filter( 'edd_download_category_labels', 'edd_publicatios_category_labels', 10, 2 );
-function edd_publicatios_category_labels( $category_labels ) {
-	$category_labels['name'] = 'Types';
-	$category_labels['singular_name'] = 'Type';
+add_filter( 'edd_download_tag_labels', 'edd_publications_tag_labels', 10, 2 );
+function edd_publications_tag_labels( $tag_labels ) {
+	$tag_labels['name']              = 'Series';
+	$tag_labels['singular_name']     = 'Series';
+	$tag_labels['search_items']      = 'Search Series';
+	$tag_labels['all_items']         = 'All Series';
+	$tag_labels['parent_item']       = 'Parent Series';
+	$tag_labels['parent_item_colon'] = 'Parent Series:';
+	$tag_labels['edit_item']         = __( 'Edit Series', 'edd-publications-rabia' );
+	$tag_labels['update_item']       = __( 'Update Series', 'edd-publications-rabia' );
+	$tag_labels['add_new_item']      = sprintf( __( 'Add New %s Series', 'edd-publications-rabia' ), edd_get_label_singular() );
+	$tag_labels['new_item_name']     = 'New Series Name';
+	$tag_labels['menu_name']         = 'Series';
+
+	return $tag_labels;
+}
+
+add_filter( 'edd_download_category_labels', 'edd_publications_category_labels', 10, 2 );
+function edd_publications_category_labels( $category_labels ) {
+	$category_labels['name']              = 'Types';
+	$category_labels['singular_name']     = 'Type';
+	$category_labels['search_items']      = 'Search Types';
+	$category_labels['all_items']         = 'All Types';
+	$category_labels['parent_item']       = 'Parent Type';
+	$category_labels['parent_item_colon'] = 'Parent Type:';
+	$category_labels['edit_item']         = __( 'Edit Type', 'edd-publications-rabia' );
+	$category_labels['update_item']       = __( 'Update Type', 'edd-publications-rabia' );
+	$category_labels['add_new_item']      = sprintf( __( 'Add New %s Type', 'edd-publications-rabia' ), edd_get_label_singular() );
+	$category_labels['new_item_name']     = 'New Type Name';
+	$category_labels['menu_name']         = 'Types';
 
 	return $category_labels;
 }
@@ -102,4 +128,3 @@ function edd_publications_checkout_image_size( $size ) {
 
 	return $size;
 }
-
