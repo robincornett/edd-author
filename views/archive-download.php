@@ -54,5 +54,15 @@ add_action( 'genesis_entry_footer', 'genesis_entry_header_markup_open', 5 );
 add_action( 'genesis_entry_footer', 'genesis_do_post_title' );
 add_action( 'genesis_entry_footer', 'genesis_entry_header_markup_close', 15 );
 
+add_action( 'genesis_before_loop', 'edd_publications_open_div', 15 );
+add_action( 'genesis_after_loop', 'edd_publications_close_div' );
+function edd_publications_open_div() {
+	echo '<div class="publications">';
+}
+
+function edd_publications_close_div() {
+	echo '</div>';
+}
+
 
 genesis();

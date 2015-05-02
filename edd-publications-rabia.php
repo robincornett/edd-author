@@ -32,7 +32,7 @@ require plugin_dir_path( __FILE__ ) . '/includes/edd-publications-customfields.p
 add_action( 'init', 'edd_publications_settings' );
 function edd_publications_settings() {
 
-	add_image_size( 'publication', 400, 600, true );
+	add_image_size( 'publication', 300, 450, true );
 	add_image_size( 'publication_checkout', 40, 60, true );
 	add_post_type_support( 'download', 'genesis-cpt-archives-settings' );
 

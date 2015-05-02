@@ -7,7 +7,9 @@ function edd_publications_image() {
 	}
 
 	$attributes = array(
-		'class' => 'aligncenter',
+		'class' => 'alignright',
+		'alt'   => the_title_attribute( 'echo=0' ),
+		'width' => 300,
 	);
 	$image = get_the_post_thumbnail( get_the_ID(), 'publication', $attributes );
 	echo $image;
@@ -50,7 +52,7 @@ function edd_publications_links() {
 		}
 	}
 
-	if ( $links ) {
+	if ( ! empty( $links ) ) {
 		echo '<h2>Purchase Online:</h2>';
 		foreach ( $links as $link ) {
 		 	echo $link;
