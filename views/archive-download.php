@@ -32,22 +32,27 @@ function edd_publications_archive_post_class( $classes ) {
 	return $classes;
 }
 
-remove_action( 'genesis_entry_content', 'genesis_do_post_content' );
-remove_action( 'genesis_entry_content', 'genesis_do_post_image', 8 );
+add_filter( 'genesis_options', 'edd_publications_archive_options' );
+/**
+ * Change number of posts, as well as size and image alignment of featured image
+ * on portfolio custom post type
+ */
+function edd_publications_archive_options( $args ) {
+	$args['content_archive_thumbnail'] = 1;
+	$args['image_size']                = 'publication';
+	$args['image_alignment']           = 'aligncenter';
 
-add_action( 'genesis_entry_header', 'edd_publications_archive_thumbnail', 5 );
-function edd_publications_archive_thumbnail() {
-
-	$img = genesis_get_image( array(
-		'format'  => 'html',
-		'size'    => 'publication',
-		'context' => 'archive',
-		'attr'    => array( 'alt' => get_the_title(), 'class' => 'aligncenter entry-image' ),
-	) );
-
-	if ( ! empty( $img ) ) {
-		printf( '<a href="%s" aria-hidden="true">%s</a>', get_permalink(), $img );
-	}
+	return $args;
 }
+
+remove_action( 'genesis_entry_content', 'genesis_do_post_content' );
+remove_action( 'genesis_entry_header', 'genesis_entry_header_markup_open', 5 );
+remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
+remove_action( 'genesis_entry_header', 'genesis_entry_header_markup_close', 15 );
+
+add_action( 'genesis_entry_footer', 'genesis_entry_header_markup_open', 5 );
+add_action( 'genesis_entry_footer', 'genesis_do_post_title' );
+add_action( 'genesis_entry_footer', 'genesis_entry_header_markup_close', 15 );
+
 
 genesis();
