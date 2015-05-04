@@ -49,43 +49,11 @@ function edd_publications_post_type_args( $download_args ) {
 add_filter( 'edd_default_downloads_name', 'edd_publications_default_names', 10, 2 );
 function edd_publications_default_names( $defaults ) {
 	$defaults = array(
-		'singular' => __( 'Publication', 'edd' ),
-		'plural'   => __( 'Publications', 'edd' ),
+		'singular' => __( 'Publication', 'edd-publications-rabia' ),
+		'plural'   => __( 'Publications', 'edd-publications-rabia' ),
 	);
 
 	return $defaults;
-}
-
-add_action( 'after_setup_theme', 'edd_publications_templates' );
-function edd_publications_templates() {
-	$parent = basename( get_template_directory() );
-	if ( 'genesis' === $parent ) {
-		add_filter( 'archive_template', 'edd_publications_load_archive_template' );
-		add_filter( 'single_template', 'edd_publications_load_single_template' );
-		add_filter( 'body_class', 'edd_publications_add_body_class' );
-	}
-}
-
-function edd_publications_load_archive_template( $archive_template ) {
-	if ( is_post_type_archive( 'download' ) || is_tax( array( 'download_category', 'download_tag' ) ) ) {
-		$archive_template = plugin_dir_path( __FILE__ ) . '/views/archive-download.php';
-	}
-	return $archive_template;
-}
-
-function edd_publications_load_single_template( $single_template ) {
-	if ( is_singular( 'download' ) ) {
-		$single_template = plugin_dir_path( __FILE__ ) . '/views/single-download.php';
-	}
-	return $single_template;
-}
-
-function edd_publications_add_body_class( $classes ) {
-	if ( 'download' === get_post_type() ) {
-		$classes[] = 'publication';
-	}
-
-	return $classes;
 }
 
 add_filter( 'edd_download_tag_labels', 'edd_publications_tag_labels', 10, 2 );
@@ -127,4 +95,50 @@ function edd_publications_checkout_image_size( $size ) {
 	$size = 'publication_checkout';
 
 	return $size;
+}
+
+add_filter( 'edd_download_category_args', 'edd_publications_category_args', 10, 2 );
+function edd_publications_category_args( $category_args ) {
+	$category_args['rewrite'] = array( 'slug' => 'works', 'with_front' => false, 'hierarchical' => true );
+
+	return $category_args;
+}
+
+add_filter( 'edd_download_tag_args', 'edd_publications_tag_args', 10, 2 );
+function edd_publications_tag_args( $tag_args ) {
+	$tag_args['rewrite'] = array( 'slug' => 'series' );
+
+	return $tag_args;
+}
+
+add_action( 'after_setup_theme', 'edd_publications_templates' );
+function edd_publications_templates() {
+	$parent = basename( get_template_directory() );
+	if ( 'genesis' === $parent ) {
+		add_filter( 'archive_template', 'edd_publications_load_archive_template' );
+		add_filter( 'single_template', 'edd_publications_load_single_template' );
+		add_filter( 'body_class', 'edd_publications_add_body_class' );
+	}
+}
+
+function edd_publications_load_archive_template( $archive_template ) {
+	if ( is_post_type_archive( 'download' ) || is_tax( array( 'download_category', 'download_tag' ) ) ) {
+		$archive_template = plugin_dir_path( __FILE__ ) . '/views/archive-download.php';
+	}
+	return $archive_template;
+}
+
+function edd_publications_load_single_template( $single_template ) {
+	if ( is_singular( 'download' ) ) {
+		$single_template = plugin_dir_path( __FILE__ ) . '/views/single-download.php';
+	}
+	return $single_template;
+}
+
+function edd_publications_add_body_class( $classes ) {
+	if ( 'download' === get_post_type() ) {
+		$classes[] = 'publication';
+	}
+
+	return $classes;
 }
