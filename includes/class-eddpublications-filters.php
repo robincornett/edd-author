@@ -20,8 +20,8 @@ class EDD_Publications_Filters {
 
 	function set_default_names( $defaults ) {
 		$defaults = array(
-			'singular' => __( 'Publication', 'edd-publications-rabia' ),
-			'plural'   => __( 'Publications', 'edd-publications-rabia' ),
+			'singular' => __( 'Works', 'edd-publications-rabia' ),
+			'plural'   => __( 'Works', 'edd-publications-rabia' ),
 		);
 
 		return $defaults;
