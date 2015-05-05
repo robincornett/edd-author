@@ -28,8 +28,8 @@ class EDD_Publications_Filters {
 	}
 
 	function set_category_labels( $category_labels ) {
-		$singular = 'Type';
-		$plural   = 'Types';
+		$singular = __( 'Type', 'edd-publications-rabia' );
+		$plural   = __( 'Types', 'edd-publications-rabia' );
 
 		$category_labels['name']              = $plural;
 		$category_labels['singular_name']     = $singular;
@@ -47,8 +47,8 @@ class EDD_Publications_Filters {
 	}
 
 	function set_tag_labels( $tag_labels ) {
-		$singular = 'Series';
-		$plural   = 'Series';
+		$singular = __( 'Series', 'edd-publications-rabia' );
+		$plural   = __( 'Series', 'edd-publications-rabia' );
 
 		$tag_labels['name']              = $plural;
 		$tag_labels['singular_name']     = $singular;
