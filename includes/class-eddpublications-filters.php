@@ -33,14 +33,14 @@ class EDD_Publications_Filters {
 
 		$category_labels['name']              = $plural;
 		$category_labels['singular_name']     = $singular;
-		$category_labels['search_items']      = sprintf( 'Search %s', $plural );
-		$category_labels['all_items']         = sprintf( 'All %s', $plural );
-		$category_labels['parent_item']       = sprintf( 'Parent %s', $singular );
-		$category_labels['parent_item_colon'] = sprintf( 'Parent %s:', $singular );
+		$category_labels['search_items']      = sprintf( __( 'Search %s', 'edd-publications-rabia' ), $plural );
+		$category_labels['all_items']         = sprintf( __( 'All %s', 'edd-publications-rabia' ), $plural );
+		$category_labels['parent_item']       = sprintf( __( 'Parent %s', 'edd-publications-rabia' ), $singular );
+		$category_labels['parent_item_colon'] = sprintf( __( 'Parent %s:', 'edd-publications-rabia' ), $singular );
 		$category_labels['edit_item']         = sprintf( __( 'Edit %s', 'edd-publications-rabia' ), $singular );
 		$category_labels['update_item']       = sprintf( __( 'Update %s', 'edd-publications-rabia' ), $singular );
 		$category_labels['add_new_item']      = sprintf( __( 'Add New %s Type', 'edd-publications-rabia' ), $singular );
-		$category_labels['new_item_name']     = sprintf( 'New %s Name', $singular );
+		$category_labels['new_item_name']     = sprintf( __( 'New %s Name', 'edd-publications-rabia' ), $singular );
 		$category_labels['menu_name']         = $plural;
 
 		return $category_labels;
@@ -52,14 +52,14 @@ class EDD_Publications_Filters {
 
 		$tag_labels['name']              = $plural;
 		$tag_labels['singular_name']     = $singular;
-		$tag_labels['search_items']      = sprintf( 'Search %s', $plural );
-		$tag_labels['all_items']         = sprintf( 'All %s', $plural );
-		$tag_labels['parent_item']       = sprintf( 'Parent %s', $singular );
-		$tag_labels['parent_item_colon'] = sprintf( 'Parent %s:', $singular );
+		$tag_labels['search_items']      = sprintf( __( 'Search %s', 'edd-publications-rabia' ), $plural );
+		$tag_labels['all_items']         = sprintf( __( 'All %s', 'edd-publications-rabia' ), $plural );
+		$tag_labels['parent_item']       = sprintf( __( 'Parent %s', 'edd-publications-rabia' ), $singular );
+		$tag_labels['parent_item_colon'] = sprintf( __( 'Parent %s:', 'edd-publications-rabia' ), $singular );
 		$tag_labels['edit_item']         = sprintf( __( 'Edit %s', 'edd-publications-rabia' ), $singular );
 		$tag_labels['update_item']       = sprintf( __( 'Update %s', 'edd-publications-rabia' ), $singular );
 		$tag_labels['add_new_item']      = sprintf( __( 'Add New %s Series', 'edd-publications-rabia' ), $singular );
-		$tag_labels['new_item_name']     = sprintf( 'New Series Name', $singular );
+		$tag_labels['new_item_name']     = sprintf( __( 'New Series Name', 'edd-publications-rabia' ), $singular );
 		$tag_labels['menu_name']         = $plural;
 
 		return $tag_labels;
