@@ -73,7 +73,7 @@ class EDD_Publications_Filters {
 	}
 
 	function set_category_args( $category_args ) {
-		$category_args['rewrite'] = array( 'slug' => 'works', 'with_front' => false, 'hierarchical' => true );
+		$category_args['rewrite'] = array( 'slug' => 'type', 'with_front' => false, 'hierarchical' => true );
 
 		return $category_args;
 	}
