@@ -11,9 +11,7 @@ class EDD_Publications {
 		add_action( 'init', array( $this, 'add_settings' ) );
 		add_action( 'after_setup_theme', array( $this, 'load_templates' ) );
 
-		if ( function_exists( 'register_field_group' ) ) {
-			add_action( 'admin_init', array( $this->customfields, 'register_fields' ) );
-		}
+		add_action( 'cmb2_init', array( $this->customfields, 'register_fields' ) );
 	}
 
 	public function add_settings() {
