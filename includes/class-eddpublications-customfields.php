@@ -17,30 +17,30 @@ class EDD_Publications_Custom_Fields {
 		) );
 
 		$eddpublications_box->add_field( array(
-			'name' => __( 'Amazon', 'cmb2' ),
-			'id'   => $prefix . 'amazon',
-			'type' => 'text_url',
+			'name'      => __( 'Amazon', 'cmb2' ),
+			'id'        => $prefix . 'amazon',
+			'type'      => 'text_url',
 			'protocols' => array( 'http', 'https' ), // Array of allowed protocols
 		) );
 
 		$eddpublications_box->add_field( array(
-			'name' => __( 'Barnes & Noble', 'cmb2' ),
-			'id'   => $prefix . 'barnesnoble',
-			'type' => 'text_url',
+			'name'      => __( 'Barnes & Noble', 'cmb2' ),
+			'id'        => $prefix . 'barnesnoble',
+			'type'      => 'text_url',
 			'protocols' => array( 'http', 'https' ), // Array of allowed protocols
 		) );
 
 		$eddpublications_box->add_field( array(
-			'name' => __( 'Smashwords', 'cmb2' ),
-			'id'   => $prefix . 'smashwords',
-			'type' => 'text_url',
+			'name'      => __( 'Smashwords', 'cmb2' ),
+			'id'        => $prefix . 'smashwords',
+			'type'      => 'text_url',
 			'protocols' => array( 'http', 'https' ), // Array of allowed protocols
 		) );
 
 		$eddpublications_box->add_field( array(
-			'name' => __( 'Kobo', 'cmb2' ),
-			'id'   => $prefix . 'kobo',
-			'type' => 'text_url',
+			'name'      => __( 'Kobo', 'cmb2' ),
+			'id'        => $prefix . 'kobo',
+			'type'      => 'text_url',
 			'protocols' => array( 'http', 'https' ), // Array of allowed protocols
 		) );
 

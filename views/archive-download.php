@@ -65,5 +65,4 @@ function edd_publications_close_div() {
 	echo '</div>';
 }
 
-
 genesis();

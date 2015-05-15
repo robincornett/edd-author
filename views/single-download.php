@@ -20,10 +20,10 @@ function edd_publications_links() {
 
 	$prefix        = '_eddpublications_';
 	$custom_fields = array(
-		'amazon'      => 'Amazon',
-		'barnesnoble' => 'Barnes & Noble',
-		'kobo'        => 'Kobo',
-		'smashwords'  => 'Smashwords',
+		'amazon'      => __( 'Amazon', 'edd-publications-rabia' ),
+		'barnesnoble' => __( 'Barnes & Noble', 'edd-publications-rabia' ),
+		'kobo'        => __( 'Kobo', 'edd-publications-rabia' ),
+		'smashwords'  => __( 'Smashwords', 'edd-publications-rabia' ),
 	);
 
 	foreach ( $custom_fields as $key => $value ) {
