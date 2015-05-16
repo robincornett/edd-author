@@ -39,9 +39,11 @@ function edd_publications_links() {
 
 	if ( ! empty( $links ) ) {
 		echo '<h2>Purchase Online:</h2>';
+		echo '<div class="vendor-buttons">';
 		foreach ( $links as $link ) {
 		 	echo wp_kses_post( $link );
 		}
+		echo '</div>';
 	}
 
 }
