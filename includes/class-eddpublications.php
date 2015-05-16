@@ -8,10 +8,56 @@ class EDD_Publications {
 	}
 
 	public function run() {
+
+		if ( ! class_exists( 'Easy_Digital_Downloads' ) ) {
+			add_action( 'admin_init', array( $this, 'deactivate' ) );
+			add_action( 'admin_notices', array( $this, 'error_message' ) );
+			return;
+		}
+
 		add_action( 'init', array( $this, 'add_settings' ) );
 		add_action( 'after_setup_theme', array( $this, 'load_templates' ) );
 
 		add_action( 'cmb2_init', array( $this->customfields, 'register_fields' ) );
+	}
+
+	/**
+	 * deactivates the plugin if EDD isn't running
+	 *
+	 *  @since x.y.z
+	 *
+	 */
+	public function deactivate() {
+
+		$file = plugin_basename( dirname( dirname( __FILE__ ) ) ) . '/edd-publications-rabia.php';
+		if ( version_compare( PHP_VERSION, '5.3', '>=' ) ) {
+			$file = plugin_basename( dirname( __DIR__ ) ) . '/edd-publications-rabia.php'; // __DIR__ is a magic constant introduced in PHP 5.3
+		}
+		deactivate_plugins( $file );
+	}
+
+	/**
+	 * Error message if we're not using EDD.
+	 *
+	 * @since x.y.z
+	 */
+	public function error_message() {
+
+		$error = sprintf( __( 'Sorry, EDD Publications works only if Easy Digital Downloads is active. It has been deactivated.', 'display-featured-image-genesis' ) );
+
+		if ( version_compare( PHP_VERSION, '5.3', '<' ) ) {
+			$error = $error . sprintf(
+				__( ' But since we\'re talking anyway, did you know that your server is running PHP version %1$s, which is outdated? You should ask your host to update that for you.', 'display-featured-image-genesis' ),
+				PHP_VERSION
+			);
+		}
+
+		echo '<div class="error"><p>' . esc_attr( $error ) . '</p></div>';
+
+		if ( isset( $_GET['activate'] ) ) {
+			unset( $_GET['activate'] );
+		}
+
 	}
 
 	public function add_settings() {
