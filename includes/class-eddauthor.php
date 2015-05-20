@@ -1,6 +1,6 @@
 <?php
 
-class EDD_Publications {
+class EDD_Author {
 
 	function __construct( $customfields, $filters ) {
 		$this->customfields = $customfields;
@@ -29,9 +29,9 @@ class EDD_Publications {
 	 */
 	public function deactivate() {
 
-		$file = plugin_basename( dirname( dirname( __FILE__ ) ) ) . '/edd-publications-rabia.php';
+		$file = plugin_basename( dirname( dirname( __FILE__ ) ) ) . '/edd-author.php';
 		if ( version_compare( PHP_VERSION, '5.3', '>=' ) ) {
-			$file = plugin_basename( dirname( __DIR__ ) ) . '/edd-publications-rabia.php'; // __DIR__ is a magic constant introduced in PHP 5.3
+			$file = plugin_basename( dirname( __DIR__ ) ) . '/edd-author.php'; // __DIR__ is a magic constant introduced in PHP 5.3
 		}
 		deactivate_plugins( $file );
 	}
@@ -43,7 +43,7 @@ class EDD_Publications {
 	 */
 	public function error_message() {
 
-		$error = sprintf( __( 'Sorry, EDD Publications works only if Easy Digital Downloads is active. It has been deactivated.', 'display-featured-image-genesis' ) );
+		$error = sprintf( __( 'Sorry, EDD Author works only if Easy Digital Downloads is active. It has been deactivated.', 'display-featured-image-genesis' ) );
 
 		if ( version_compare( PHP_VERSION, '5.3', '<' ) ) {
 			$error = $error . sprintf(
@@ -69,11 +69,11 @@ class EDD_Publications {
 	}
 
 	public function load_templates() {
+		add_filter( 'body_class', array( $this, 'add_body_class' ) );
 		$parent = basename( get_template_directory() );
 		if ( 'genesis' === $parent ) {
 			add_filter( 'archive_template', array( $this, 'load_archive_template' ) );
 			add_filter( 'single_template', array( $this, 'load_single_template' ) );
-			add_filter( 'body_class', array( $this, 'add_body_class' ) );
 		}
 	}
 
