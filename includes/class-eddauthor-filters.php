@@ -39,7 +39,7 @@ class EDD_Author_Filters {
 		$category_labels['parent_item_colon'] = sprintf( __( 'Parent %s:', 'edd-author' ), $singular );
 		$category_labels['edit_item']         = sprintf( __( 'Edit %s', 'edd-author' ), $singular );
 		$category_labels['update_item']       = sprintf( __( 'Update %s', 'edd-author' ), $singular );
-		$category_labels['add_new_item']      = sprintf( __( 'Add New %s Type', 'edd-author' ), $singular );
+		$category_labels['add_new_item']      = sprintf( __( 'Add New %s', 'edd-author' ), $singular );
 		$category_labels['new_item_name']     = sprintf( __( 'New %s Name', 'edd-author' ), $singular );
 		$category_labels['menu_name']         = $plural;
 
@@ -58,8 +58,8 @@ class EDD_Author_Filters {
 		$tag_labels['parent_item_colon'] = sprintf( __( 'Parent %s:', 'edd-author' ), $singular );
 		$tag_labels['edit_item']         = sprintf( __( 'Edit %s', 'edd-author' ), $singular );
 		$tag_labels['update_item']       = sprintf( __( 'Update %s', 'edd-author' ), $singular );
-		$tag_labels['add_new_item']      = sprintf( __( 'Add New %s Series', 'edd-author' ), $singular );
-		$tag_labels['new_item_name']     = sprintf( __( 'New Series Name', 'edd-author' ), $singular );
+		$tag_labels['add_new_item']      = sprintf( __( 'Add New %s', 'edd-author' ), $singular );
+		$tag_labels['new_item_name']     = sprintf( __( 'New %s Name', 'edd-author' ), $singular );
 		$tag_labels['menu_name']         = $plural;
 
 		return $tag_labels;
