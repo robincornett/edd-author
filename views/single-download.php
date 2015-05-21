@@ -1,6 +1,14 @@
 <?php
 
+remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
+remove_action( 'genesis_before_post_content', 'genesis_post_info' );
+remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_open', 5 );
+remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_close', 15 );
+remove_action( 'genesis_entry_footer', 'genesis_post_meta' );
+remove_action( 'genesis_after_post_content', 'genesis_post_meta' );
+
 add_action( 'genesis_entry_content', 'edd_publications_image', 5 );
+add_action( 'genesis_post_content', 'edd_publications_image', 5 );
 function edd_publications_image() {
 	if ( ! has_post_thumbnail() ) {
 		return;
@@ -16,6 +24,7 @@ function edd_publications_image() {
 }
 
 add_action( 'genesis_entry_content', 'edd_publications_links', 50 );
+add_action( 'genesis_post_content', 'edd_publications_links', 50 );
 function edd_publications_links() {
 
 	$prefix        = '_eddpublications_';

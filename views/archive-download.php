@@ -45,24 +45,43 @@ function edd_publications_archive_options( $args ) {
 	return $args;
 }
 
+// remove entry content
 remove_action( 'genesis_entry_content', 'genesis_do_post_content' );
+remove_action( 'genesis_post_content', 'genesis_do_post_content' );
+
+// remove entry header
 remove_action( 'genesis_entry_header', 'genesis_entry_header_markup_open', 5 );
 remove_action( 'genesis_entry_header', 'genesis_do_post_title' );
 remove_action( 'genesis_entry_header', 'genesis_entry_header_markup_close', 15 );
-remove_action( 'genesis_after_endwhile', 'genesis_posts_nav' );
 
+// remove post info
+remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
+remove_action( 'genesis_before_post_content', 'genesis_post_info' );
+
+// remove entry footer
+remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_open', 5 );
+remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_close', 15 );
+remove_action( 'genesis_entry_footer', 'genesis_post_meta' );
+remove_action( 'genesis_after_post_content', 'genesis_post_meta' );
+
+// move title below cover image
 add_action( 'genesis_entry_footer', 'genesis_entry_header_markup_open', 5 );
 add_action( 'genesis_entry_footer', 'genesis_do_post_title' );
 add_action( 'genesis_entry_footer', 'genesis_entry_header_markup_close', 15 );
+
+// wrap post entries in a div for styling
 add_action( 'genesis_before_loop', 'edd_publications_open_div', 15 );
-add_action( 'genesis_after_endwhile', 'edd_publications_close_div', 5 );
-add_action( 'genesis_after_loop', 'genesis_posts_nav', 20 );
 function edd_publications_open_div() {
 	echo '<div class="publications">';
 }
 
+add_action( 'genesis_after_endwhile', 'edd_publications_close_div', 5 );
 function edd_publications_close_div() {
 	echo '</div>';
 }
+
+// move post navigation
+remove_action( 'genesis_after_endwhile', 'genesis_posts_nav' );
+add_action( 'genesis_after_loop', 'genesis_posts_nav', 20 );
 
 genesis();
