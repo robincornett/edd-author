@@ -27,7 +27,7 @@ add_action( 'genesis_entry_content', 'edd_publications_links', 50 );
 add_action( 'genesis_post_content', 'edd_publications_links', 50 );
 function edd_publications_links() {
 
-	$prefix        = '_eddpublications_';
+	$prefix        = '_eddauthor_';
 	$custom_fields = array(
 		'amazon'      => __( 'Amazon', 'edd-publications-rabia' ),
 		'barnesnoble' => __( 'Barnes & Noble', 'edd-publications-rabia' ),
