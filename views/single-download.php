@@ -7,9 +7,9 @@ remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_close', 15 )
 remove_action( 'genesis_entry_footer', 'genesis_post_meta' );
 remove_action( 'genesis_after_post_content', 'genesis_post_meta' );
 
-add_action( 'genesis_entry_content', 'edd_publications_image', 5 );
-add_action( 'genesis_post_content', 'edd_publications_image', 5 );
-function edd_publications_image() {
+add_action( 'genesis_entry_content', 'edd_author_image', 5 );
+add_action( 'genesis_post_content', 'edd_author_image', 5 );
+function edd_author_image() {
 	if ( ! has_post_thumbnail() ) {
 		return;
 	}
@@ -23,16 +23,16 @@ function edd_publications_image() {
 	echo wp_kses_post( $image );
 }
 
-add_action( 'genesis_entry_content', 'edd_publications_links', 50 );
-add_action( 'genesis_post_content', 'edd_publications_links', 50 );
-function edd_publications_links() {
+add_action( 'genesis_entry_content', 'edd_author_links', 50 );
+add_action( 'genesis_post_content', 'edd_author_links', 50 );
+function edd_author_links() {
 
 	$prefix        = '_eddauthor_';
 	$custom_fields = array(
-		'amazon'      => __( 'Amazon', 'edd-publications-rabia' ),
-		'barnesnoble' => __( 'Barnes & Noble', 'edd-publications-rabia' ),
-		'kobo'        => __( 'Kobo', 'edd-publications-rabia' ),
-		'smashwords'  => __( 'Smashwords', 'edd-publications-rabia' ),
+		'amazon'      => __( 'Amazon', 'edd-author' ),
+		'barnesnoble' => __( 'Barnes & Noble', 'edd-author' ),
+		'kobo'        => __( 'Kobo', 'edd-author' ),
+		'smashwords'  => __( 'Smashwords', 'edd-author' ),
 	);
 
 	foreach ( $custom_fields as $key => $value ) {

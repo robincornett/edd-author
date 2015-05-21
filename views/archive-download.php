@@ -1,7 +1,7 @@
 <?php
 
-add_filter( 'post_class', 'edd_publications_archive_post_class', 10, 2 );
-function edd_publications_archive_post_class( $classes ) {
+add_filter( 'post_class', 'edd_author_archive_post_class', 10, 2 );
+function edd_author_archive_post_class( $classes ) {
 	global $wp_query;
 
 	if ( ! $wp_query->is_main_query() ) {
@@ -32,12 +32,12 @@ function edd_publications_archive_post_class( $classes ) {
 	return $classes;
 }
 
-add_filter( 'genesis_options', 'edd_publications_archive_options' );
+add_filter( 'genesis_options', 'edd_author_archive_options' );
 /**
  * Change number of posts, as well as size and image alignment of featured image
  * on portfolio custom post type
  */
-function edd_publications_archive_options( $args ) {
+function edd_author_archive_options( $args ) {
 	$args['content_archive_thumbnail'] = 1;
 	$args['image_size']                = 'publication';
 	$args['image_alignment']           = 'aligncenter';
@@ -70,13 +70,13 @@ add_action( 'genesis_entry_footer', 'genesis_do_post_title' );
 add_action( 'genesis_entry_footer', 'genesis_entry_header_markup_close', 15 );
 
 // wrap post entries in a div for styling
-add_action( 'genesis_before_loop', 'edd_publications_open_div', 15 );
-function edd_publications_open_div() {
+add_action( 'genesis_before_loop', 'edd_author_open_div', 15 );
+function edd_author_open_div() {
 	echo '<div class="publications">';
 }
 
-add_action( 'genesis_after_endwhile', 'edd_publications_close_div', 5 );
-function edd_publications_close_div() {
+add_action( 'genesis_after_endwhile', 'edd_author_close_div', 5 );
+function edd_author_close_div() {
 	echo '</div>';
 }
 
