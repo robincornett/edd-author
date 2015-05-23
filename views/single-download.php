@@ -47,7 +47,7 @@ function edd_author_links() {
 	}
 
 	if ( ! empty( $links ) ) {
-		echo '<h2>Purchase Online:</h2>';
+		echo '<h2 class="vendors">Purchase Online:</h2>';
 		echo '<div class="vendor-buttons">';
 		foreach ( $links as $link ) {
 		 	echo wp_kses_post( $link );
