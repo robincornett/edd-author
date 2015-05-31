@@ -27,21 +27,16 @@ add_action( 'genesis_entry_content', 'edd_author_links', 50 );
 add_action( 'genesis_post_content', 'edd_author_links', 50 );
 function edd_author_links() {
 
-	$prefix        = '_eddauthor_';
-	$custom_fields = array(
-		'amazon'      => __( 'Amazon', 'edd-author' ),
-		'barnesnoble' => __( 'Barnes & Noble', 'edd-author' ),
-		'kobo'        => __( 'Kobo', 'edd-author' ),
-		'smashwords'  => __( 'Smashwords', 'edd-author' ),
-	);
+	$prefix = '_eddauthor_';
+	$fields = EDD_Author_Custom_Fields::register_fields();
 
-	foreach ( $custom_fields as $key => $value ) {
-		$url = get_post_meta( get_the_ID(), $prefix . $key, true );
+	foreach ( $fields as $field ) {
+		$url = get_post_meta( get_the_ID(), $prefix . $field['id'], true );
 
 		if ( $url ) {
 			$links[] = sprintf( '<a href="%s" target="_blank" class="button vendor">%s</a>',
 				esc_url( $url ),
-				esc_attr( $value )
+				esc_attr( $field['name'] )
 			);
 		}
 	}

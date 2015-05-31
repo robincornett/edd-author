@@ -2,7 +2,9 @@
 
 class EDD_Author_Custom_Fields {
 
-	public function register_fields() {
+	public static function register_fields() {
+
+		$fields = new stdClass();
 
 		// Start with an underscore to hide fields from custom fields list
 		$prefix = '_eddauthor_';
@@ -43,6 +45,8 @@ class EDD_Author_Custom_Fields {
 				'protocols' => array( 'http', 'https' ), // Array of allowed protocols
 			) );
 		}
+
+		return $fields;
 
 	}
 
