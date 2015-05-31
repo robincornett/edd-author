@@ -16,33 +16,33 @@ class EDD_Author_Custom_Fields {
 			'show_names'    => true, // Show field names on the left
 		) );
 
-		$eddpublications_box->add_field( array(
-			'name'      => __( 'Amazon', 'edd-author' ),
-			'id'        => $prefix . 'amazon',
-			'type'      => 'text_url',
-			'protocols' => array( 'http', 'https' ), // Array of allowed protocols
+		$fields = apply_filters( 'eddauthor_third_party_vendors', array(
+			array(
+				'name' => __( 'Amazon', 'edd-author' ),
+				'id'   => 'amazon',
+			),
+			array(
+				'name' => __( 'Barnes & Noble', 'edd-author' ),
+				'id'   => 'barnesnoble',
+			),
+			array(
+				'name' => __( 'Smashwords', 'edd-author' ),
+				'id'   => 'smashwords',
+			),
+			array(
+				'name' => __( 'Kobo', 'edd-author' ),
+				'id'   => 'kobo',
+			),
 		) );
 
-		$eddpublications_box->add_field( array(
-			'name'      => __( 'Barnes & Noble', 'edd-author' ),
-			'id'        => $prefix . 'barnesnoble',
-			'type'      => 'text_url',
-			'protocols' => array( 'http', 'https' ), // Array of allowed protocols
-		) );
-
-		$eddpublications_box->add_field( array(
-			'name'      => __( 'Smashwords', 'edd-author' ),
-			'id'        => $prefix . 'smashwords',
-			'type'      => 'text_url',
-			'protocols' => array( 'http', 'https' ), // Array of allowed protocols
-		) );
-
-		$eddpublications_box->add_field( array(
-			'name'      => __( 'Kobo', 'edd-author' ),
-			'id'        => $prefix . 'kobo',
-			'type'      => 'text_url',
-			'protocols' => array( 'http', 'https' ), // Array of allowed protocols
-		) );
+		foreach ( $fields as $field ) {
+			$eddpublications_box->add_field( array(
+				'name'      => $field['name'],
+				'id'        => $prefix . $field['id'],
+				'type'      => 'text_url',
+				'protocols' => array( 'http', 'https' ), // Array of allowed protocols
+			) );
+		}
 
 	}
 
