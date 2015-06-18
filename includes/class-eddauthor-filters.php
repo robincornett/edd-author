@@ -2,20 +2,13 @@
 
 class EDD_Author_Filters {
 
-	public function __construct() {
-
-		// Labels
-		add_filter( 'edd_default_downloads_name', array( $this, 'set_default_names' ), 10, 2 );
-		add_filter( 'edd_download_category_labels', array( $this, 'set_category_labels' ), 10, 2 );
-		add_filter( 'edd_download_tag_labels', array( $this, 'set_tag_labels' ), 10, 2 );
-
-		// Args
-		add_filter( 'edd_download_post_type_args', array( $this, 'set_post_type_args' ), 10, 2 );
-		add_filter( 'edd_download_category_args', array( $this, 'set_category_args' ), 10, 2 );
-		add_filter( 'edd_download_tag_args', array( $this, 'set_tag_args' ), 10, 2 );
-
-		// Other
-		add_filter( 'edd_checkout_image_size', array( $this, 'change_checkout_image' ), 10, 2 );
+	function modify_archive_query( $query ) {
+		if ( ! $query->is_main_query() || is_admin() || is_singular() ) {
+			return;
+		}
+		if ( is_post_type_archive( 'download' ) || is_tax( array( 'download_category', 'download_tag' ) ) ) {
+			$query->set( 'posts_per_page', 20 );
+		}
 	}
 
 	function set_default_names( $defaults ) {
@@ -73,7 +66,7 @@ class EDD_Author_Filters {
 	}
 
 	function set_category_args( $category_args ) {
-		$category_args['rewrite'] = array( 'slug' => 'type', 'with_front' => false, 'hierarchical' => true );
+		$category_args['rewrite'] = array( 'slug' => 'type' );
 
 		return $category_args;
 	}

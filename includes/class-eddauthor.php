@@ -19,6 +19,23 @@ class EDD_Author {
 		add_action( 'after_setup_theme', array( $this, 'load_templates' ) );
 
 		add_action( 'cmb2_init', array( $this->customfields, 'register_fields' ) );
+
+		// Query
+		add_filter( 'pre_get_posts', array( $this->filters, 'modify_archive_query' ), 9999 );
+
+		// Labels
+		add_filter( 'edd_default_downloads_name', array( $this->filters, 'set_default_names' ), 10, 2 );
+		add_filter( 'edd_download_category_labels', array( $this->filters, 'set_category_labels' ), 10, 2 );
+		add_filter( 'edd_download_tag_labels', array( $this->filters, 'set_tag_labels' ), 10, 2 );
+
+		// Args
+		add_filter( 'edd_download_post_type_args', array( $this->filters, 'set_post_type_args' ), 10, 2 );
+		add_filter( 'edd_download_category_args', array( $this->filters, 'set_category_args' ), 10, 2 );
+		add_filter( 'edd_download_tag_args', array( $this->filters, 'set_tag_args' ), 10, 2 );
+
+		// Other
+		add_filter( 'edd_checkout_image_size', array( $this->filters, 'change_checkout_image' ), 10, 2 );
+
 	}
 
 	/**
