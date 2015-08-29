@@ -58,24 +58,30 @@ class EDD_Author {
 
 	public function load_templates() {
 		add_filter( 'body_class', array( $this, 'add_body_class' ) );
-		$parent = basename( get_template_directory() );
-		if ( 'genesis' === $parent ) {
-			add_filter( 'archive_template', array( $this, 'load_archive_template' ) );
-			add_filter( 'single_template', array( $this, 'load_single_template' ) );
-		}
+		add_filter( 'archive_template', array( $this, 'load_archive_template' ) );
+		add_filter( 'single_template', array( $this, 'load_single_template' ) );
 	}
 
 	public function load_archive_template( $archive_template ) {
 		if ( is_post_type_archive( 'download' ) || is_tax( array( 'download_category', 'download_tag' ) ) ) {
-			$archive_template = plugin_dir_path( dirname( __FILE__ ) ) . '/views/archive-download.php';
+			$parent = basename( get_template_directory() );
+			if ( 'genesis' === $parent ) {
+				$archive_template = plugin_dir_path( dirname( __FILE__ ) ) . '/views/archive-download.php';
+			}
 		}
 		return $archive_template;
 	}
 
 	public function load_single_template( $single_template ) {
-		if ( is_singular( 'download' ) ) {
+		if ( ! is_singular( 'download' ) ) {
+			return $single_template;
+		}
+		$parent = basename( get_template_directory() );
+		if ( 'genesis' === $parent ) {
 			$single_template = plugin_dir_path( dirname( __FILE__ ) ) . '/views/single-download.php';
 		}
+		add_action( 'edd_before_download_content', 'edd_author_image', 5 );
+		add_action( 'edd_after_download_content', 'edd_author_links', 5 );
 		return $single_template;
 	}
 

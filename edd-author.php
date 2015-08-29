@@ -33,6 +33,7 @@ function edd_author_require() {
 		'class-eddauthor-customfields',
 		'class-eddauthor-filters',
 		'class-tgm-plugin-activation',
+		'template-functions',
 	);
 
 	foreach ( $files as $file ) {
