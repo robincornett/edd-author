@@ -9,14 +9,9 @@ class EDD_Author {
 
 	public function run() {
 
-		if ( ! class_exists( 'Easy_Digital_Downloads' ) ) {
-			add_action( 'admin_init', array( $this, 'deactivate' ) );
-			add_action( 'admin_notices', array( $this, 'error_message' ) );
-			return;
-		}
-
 		add_action( 'init', array( $this, 'add_settings' ) );
 		add_action( 'after_setup_theme', array( $this, 'load_templates' ) );
+		add_action( 'tgmpa_register', array( $this, 'require_plugins' ) );
 
 		add_action( 'cmb2_init', array( $this->customfields, 'register_fields' ) );
 
@@ -51,30 +46,6 @@ class EDD_Author {
 			$file = plugin_basename( dirname( __DIR__ ) ) . '/edd-author.php'; // __DIR__ is a magic constant introduced in PHP 5.3
 		}
 		deactivate_plugins( $file );
-	}
-
-	/**
-	 * Error message if we're not using EDD.
-	 *
-	 * @since x.y.z
-	 */
-	public function error_message() {
-
-		$error = sprintf( __( 'Sorry, EDD Author works only if Easy Digital Downloads is active. It has been deactivated.', 'display-featured-image-genesis' ) );
-
-		if ( version_compare( PHP_VERSION, '5.3', '<' ) ) {
-			$error = $error . sprintf(
-				__( ' But since we\'re talking anyway, did you know that your server is running PHP version %1$s, which is outdated? You should ask your host to update that for you.', 'display-featured-image-genesis' ),
-				PHP_VERSION
-			);
-		}
-
-		echo '<div class="error"><p>' . esc_attr( $error ) . '</p></div>';
-
-		if ( isset( $_GET['activate'] ) ) {
-			unset( $_GET['activate'] );
-		}
-
 	}
 
 	public function add_settings() {
@@ -116,4 +87,62 @@ class EDD_Author {
 		return $classes;
 	}
 
+	public function require_plugins() {
+		/*
+		 * Array of plugin arrays. Required keys are name and slug.
+		 * If the source is NOT from the .org repo, then source is also required.
+		 */
+		$plugins = array(
+
+			array(
+				'name'      => 'CMB2',
+				'slug'      => 'cmb2',
+				'required'  => true,
+			),
+			array(
+				'name'      => 'Easy Digital Downloads',
+				'slug'      => 'easy-digital-downloads',
+				'required'  => true,
+			),
+
+		);
+
+		/*
+		 * Array of configuration settings. Amend each line as needed.
+		 *
+		 * TGMPA will start providing localized text strings soon. If you already have translations of our standard
+		 * strings available, please help us make TGMPA even better by giving us access to these translations or by
+		 * sending in a pull-request with .po file(s) with the translations.
+		 *
+		 * Only uncomment the strings in the config array if you want to customize the strings.
+		 */
+		$config = array(
+			'id'           => 'tgmpa-eddauthor',       // Unique ID for hashing notices for multiple instances of TGMPA.
+			'default_path' => '',                      // Default absolute path to bundled plugins.
+			'menu'         => 'tgmpa-install-plugins', // Menu slug.
+			'parent_slug'  => 'themes.php',            // Parent menu slug.
+			'capability'   => 'edit_theme_options',    // Capability needed to view plugin install page, should be a capability associated with the parent menu used.
+			'has_notices'  => true,                    // Show admin notices or not.
+			'dismissable'  => true,                    // If false, a user cannot dismiss the nag message.
+			'dismiss_msg'  => '',                      // If 'dismissable' is false, this message will be output at top of nag.
+			'is_automatic' => false,                   // Automatically activate plugins after installation or not.
+			'message'      => '',                      // Message to output right before the plugins table.
+
+			'strings'      => array(
+				'notice_can_install_required'  => _n_noop(
+					'EDD Author requires the following plugin: %1$s.',
+					'EDD Author requires the following plugins: %1$s.',
+					'theme-slug'
+				), // %1$s = plugin name(s).
+				'notice_can_activate_required' => _n_noop(
+					'EDD Author requires the following plugin, which is currently inactive: %1$s.',
+					'EDD Author requires the following plugins, which are currently inactive: %1$s.',
+					'theme-slug'
+				), // %1$s = plugin name(s).
+			),
+
+		);
+
+		tgmpa( $plugins, $config );
+	}
 }
