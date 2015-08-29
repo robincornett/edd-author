@@ -2,7 +2,7 @@
 
 class EDD_Author_Custom_Fields {
 
-	public static function register_fields() {
+	public function register_fields() {
 
 		$fields = new stdClass();
 
@@ -12,7 +12,7 @@ class EDD_Author_Custom_Fields {
 		$eddpublications_box = new_cmb2_box( array(
 			'id'            => $prefix . 'works_fields',
 			'title'         => __( 'Purchasing Links', 'edd-author' ),
-			'object_types'  => array( 'download', ), // Post type
+			'object_types'  => array( 'download' ), // Post type
 			'context'       => 'normal',
 			'priority'      => 'high',
 			'show_names'    => true, // Show field names on the left

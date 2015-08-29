@@ -16,16 +16,14 @@ function edd_author_archive_post_class( $classes ) {
 	if ( in_array( $layout, array( __genesis_return_sidebar_content(), __genesis_return_content_sidebar() ) ) ) {
 		$number       = 3;
 		$column_class = 'one-third';
-	}
-
-	elseif ( __genesis_return_full_width_content() === $layout ) {
+	} elseif ( __genesis_return_full_width_content() === $layout ) {
 		$number       = 4;
 		$column_class = 'one-fourth';
 	}
 
 	$classes[] = 'grid ' . $column_class;
 
-	if ( 0 == $wp_query->current_post % $number ) {
+	if ( 0 === $wp_query->current_post % $number ) {
 		$classes[] = 'first';
 	}
 
