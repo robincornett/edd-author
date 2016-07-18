@@ -28,6 +28,10 @@ class EDD_Author_Custom_Fields {
 				'id'   => 'barnesnoble',
 			),
 			array(
+				'name' => __( 'iTunes', 'edd-author' ),
+				'id'   => 'apple',
+			),
+			array(
 				'name' => __( 'Smashwords', 'edd-author' ),
 				'id'   => 'smashwords',
 			),
